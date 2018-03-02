@@ -22,7 +22,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -53,6 +53,15 @@ $config = [
             ],
         ],
         */
+    ],
+    'modules' => [
+        'user' => [
+            'class'=>'dektrium\user\module',
+            'enableUnconfirmedLogin'=>true,
+            'confirmWithin'=>21600,
+            'cost'=>12,
+            'admins'=>['admin']
+        ],
     ],
     'params' => $params,
 ];
