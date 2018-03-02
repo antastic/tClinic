@@ -50,10 +50,10 @@ AppAsset::register($this);
             ['label' => 'ค่าใช้จ่าย', 'url' => ['/payment']],
             ['label' => 'รายงาน', 'url' => ['/reports']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Login', 'url' => ['/user/security/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/user/security/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
