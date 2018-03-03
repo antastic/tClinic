@@ -5,13 +5,12 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name'=>'นิ่มคลินิก',
+    'name' => 'นิ่มคลินิก',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-        
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -24,6 +23,9 @@ $config = [
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
+        ],
+        'authManager' => [
+            'class' => 'dektrium\rbac\components\DbManager',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -45,22 +47,25 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+    /*
+      'urlManager' => [
+      'enablePrettyUrl' => true,
+      'showScriptName' => false,
+      'rules' => [
+      ],
+      ],
+     */
     ],
     'modules' => [
         'user' => [
-            'class'=>'dektrium\user\module',
-            'enableUnconfirmedLogin'=>true,
-            'confirmWithin'=>21600,
-            'cost'=>12,
-            'admins'=>['admin']
+            'class' => 'dektrium\user\module',
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
+        ],
+        'rbac' => [
+            'class' => 'dektrium\rbac\RbacWebModule',
         ],
     ],
     'params' => $params,
@@ -71,15 +76,15 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 
