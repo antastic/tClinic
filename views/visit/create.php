@@ -2,10 +2,11 @@
 
 use yii\helpers\Html;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Visit */
 
-$this->title = 'Create Visit';
+$this->title = 'การตรวจรักษาเบื้องต้น';
 //$this->params['breadcrumbs'][] = ['label' => 'Visits', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -62,8 +62,8 @@ class Visit extends \yii\db\ActiveRecord
             'visit_weigth' => 'น้ำหนัก',
             'visit_higth' => 'ส่วนสูง',
             'visit_cc' => 'อาการสำคัญ',
-            'emp_id' => 'ชื่อ นามสกุลผู้รับบริการ',
-            'pt_id' => 'เจ้าหน้าที่',
+            'emp_id' => 'เจ้าหน้าที่',
+            'pt_id' => 'ชื่อ นามสกุลผู้รับบริการ',
         ];
     }
 
