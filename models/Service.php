@@ -48,10 +48,10 @@ class Service extends \yii\db\ActiveRecord
     {
         return [
             'sv_id' => 'Sv ID',
-            'svdx' => 'Svdx',
-            'sv_details' => 'Sv Details',
-            'visit_id' => 'Visit ID',
-            'emp_id' => 'Emp ID',
+            'svdx' => 'โรค',
+            'sv_details' => 'รายละเอียดการรักษา',
+            'visit_id' => 'รหัสการรับบริการ',
+            'emp_id' => 'เจ้าหน้าที่',
         ];
     }
 

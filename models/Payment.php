@@ -45,11 +45,11 @@ class Payment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ic_id' => 'Ic ID',
-            'ic_date' => 'Ic Date',
-            'ic_summary' => 'Ic Summary',
-            'emp_id' => 'Emp ID',
-            'service_id' => 'Service ID',
+            'ic_id' => 'เลขที่',
+            'ic_date' => 'วีนที่ชำระเงิน',
+            'ic_summary' => 'จำนวนเงิน',
+            'emp_id' => 'เจ้าหน้าที่',
+            'service_id' => 'รหัสบริการ',
         ];
     }
 

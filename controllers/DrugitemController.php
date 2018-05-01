@@ -12,13 +12,12 @@ use yii\filters\VerbFilter;
 /**
  * DrugitemController implements the CRUD actions for Drugitem model.
  */
-class DrugitemController extends Controller
-{
+class DrugitemController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -33,14 +32,13 @@ class DrugitemController extends Controller
      * Lists all Drugitem models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new DrugitemSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -50,10 +48,9 @@ class DrugitemController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -62,21 +59,20 @@ class DrugitemController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id)
-    {
-       $model = new Drugitem();
-      // $modelitem = $this->findModel($id); 
+    public function actionCreate($id) {
+        $model = new Drugitem();
+        // $modelitem = $this->findModel($id); 
 
-        if ($model->load(Yii::$app->request->post()) ) {
-            $model->drug_id=$id;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->drug_id = $id;
             $model->ip_date = date('Y-m-d');
             $model->ip_status = 'ใช้ได้';
-            if($model->save()){
-            return $this->redirect(['view', 'id' => $model->ip_id]);
-        }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->ip_id]);
+            }
         }
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -87,16 +83,15 @@ class DrugitemController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
-       $model = $this->findModel($id); 
+    public function actionUpdate($id) {
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ip_id]);
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -107,8 +102,7 @@ class DrugitemController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -121,12 +115,12 @@ class DrugitemController extends Controller
      * @return Drugitem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Drugitem::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

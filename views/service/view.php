@@ -22,8 +22,8 @@ $this->title = $model->sv_id;
             'sv_id',
             'svdx',
             'sv_details',
-            'visit_id',
-            'emp_id',
+            'visit.pt.ptName',
+            'visit.emp.emp_name',
         ],
     ]) ?>
 

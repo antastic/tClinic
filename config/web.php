@@ -67,6 +67,9 @@ $config = [
         'rbac' => [
             'class' => 'dektrium\rbac\RbacWebModule',
         ],
+        'gridview'=>[
+          'class'=>'\kartik\grid\module'  
+        ],
     ],
     'params' => $params,
 ];

@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'การนัดหมาย';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="appointment-index">
 <?php Pjax::begin(); ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'apps_id',
                     'apps_date',
                     'apps_details:ntext',
-                    'emp_id',
+                    'service.visit.emp.emp_name',
                     'service_id',
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

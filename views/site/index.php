@@ -44,7 +44,7 @@ $baseUrl = Yii::getAlias('@web');
                             </div> 
                         </a>
                     </div>
-                    
+                   
                     <div class="col-sm-3">
                         <a href="<?= Url::to('index.php?r=visit'); ?>" class="card">
                             <div class="card-block">
@@ -54,8 +54,7 @@ $baseUrl = Yii::getAlias('@web');
                             </div> 
                         </a>
                     </div>
-                
-
+         
                     <div class="col-sm-3">
                         <a href="<?= Url::to('index.php?r=service'); ?>" class="card">
                             <div class="card-block">
@@ -96,7 +95,7 @@ $baseUrl = Yii::getAlias('@web');
                     </a>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="<?= Url::to('index.php?r=reports'); ?>" class="card">
                         <div class="card-block">
                             <img class="card-img-top img-responsive" src="<?= $baseUrl . '/imgs/report.png' ?>" alt="Card image cap" width="150" height="100">
@@ -106,6 +105,7 @@ $baseUrl = Yii::getAlias('@web');
 
                     </a>
                 </div>
+
             </div>
         </div>
     </div>

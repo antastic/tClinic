@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\DrugSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายการยา';
+$this->title = 'รายการยา เวชภัณฑ์';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="drug-index">

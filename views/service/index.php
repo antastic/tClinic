@@ -12,7 +12,7 @@ $this->title = 'ตรวจรักษา';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="service-index">
-<?php Pjax::begin(); ?>
+    <?php Pjax::begin(); ?>
 
     <div class="panel panel-info">
         <div class="panel-heading text-center"><?= Html::encode($this->title) ?></div>
@@ -28,16 +28,16 @@ $this->title = 'ตรวจรักษา';
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'sv_id',
+                    //'sv_id',
+                    'visit.pt.ptName',
                     'svdx',
                     'sv_details',
-                    'visit_id',
-                    'emp_id',
+                    'visit.emp.emp_name',
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]);
             ?>
-<?php Pjax::end(); ?>
+            <?php Pjax::end(); ?>
         </div>
     </div>
 </div>

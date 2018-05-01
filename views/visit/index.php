@@ -30,7 +30,7 @@ $this->title = 'ตรวจรักษาเบื้องต้น';
                     ['class' => 'yii\grid\SerialColumn',
                         ],
                     //'id',
-                    'pt_id',
+                    'pt.ptName',
                     'datetimesv:datetime',
                     //'visit_vts',
                    // 'visit_bpup',

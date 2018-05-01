@@ -14,7 +14,7 @@ use kartik\widgets\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'ic_date')->widget(DatePicker::classname(), [
-        'options' => ['placeholder' => 'วันหมดอายุ'],
+        'options' => ['placeholder' => 'วันชำระเงิน'],
         'readonly' => TRUE,
         'language' => 'th',
         'pluginOptions' => [
@@ -30,7 +30,7 @@ use kartik\widgets\DatePicker;
     <?= $form->field($model, 'service_id')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

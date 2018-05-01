@@ -33,7 +33,7 @@ $this->title = 'ค่าบริการ';
                     'ic_id',
                     'ic_date',
                     'ic_summary',
-                    'emp_id',
+                    'service.visit.emp.emp_name',
                     'service_id',
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

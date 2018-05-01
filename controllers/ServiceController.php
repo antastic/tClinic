@@ -62,12 +62,15 @@ class ServiceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Service();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->sv_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->visit_id=$id;
+            if( $model->save()){
+              return $this->redirect(['dispense/create', 'id' => $model->sv_id]);  
+            }
         }
 
         return $this->render('create', [

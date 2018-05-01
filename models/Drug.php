@@ -48,7 +48,7 @@ class Drug extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
+    /**053885612
      * @return \yii\db\ActiveQuery
      */
     public function getDispenses()

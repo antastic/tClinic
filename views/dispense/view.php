@@ -22,11 +22,11 @@ $this->title = 'ผู้รับบริการ'.$model->service->visit->pt
             'vsd_id',
             'drug_amount',
             'drug_prices',
-            'drug_id',
-            'emp_id',
+            'drug.drugname',
+            'service.visit.emp.emp_name',
             'vtd_unit',
             'service_id',
-            'Expenses_id',
+            'expenses.Expenses',
         ],
     ]) ?>
 <?= Html::a('แก้ไข', ['update', 'id' => $model->vsd_id], ['class' => 'btn btn-primary']) ?>
