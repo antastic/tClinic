@@ -21,6 +21,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
+            // 'identityClass' => 'app\models\User',
             'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
         ],
@@ -67,8 +68,8 @@ $config = [
         'rbac' => [
             'class' => 'dektrium\rbac\RbacWebModule',
         ],
-        'gridview'=>[
-          'class'=>'\kartik\grid\module'  
+        'gridview' => [
+            'class' => '\kartik\grid\module'
         ],
     ],
     'params' => $params,

@@ -45,7 +45,7 @@ $this->title = 'ข้อมูลผู้รับบริการ';
                         'template' => '{view} {update} {delete} {my_button}',
                         'buttons' => [
                             'my_button' => function ($url, $model, $key) {
-                                return Html::a('ส่งตรวจ', ['visit/create', 'id' => $model->pt_id]);
+                                return Html::a('ส่งตรวจ', ['visit/createid', 'id' => $model->pt_id]);
                             },
                                 ],
                             ],

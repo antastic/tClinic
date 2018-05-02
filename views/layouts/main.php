@@ -35,6 +35,10 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
+            if (Yii::$app->user->isGuest){
+                
+            }
+ else {
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
@@ -43,26 +47,36 @@ AppAsset::register($this);
                     ['label' => 'ยา เวชภัณฑ์', 'url' => ['/drug']],
                     ['label' => 'ตรวจเบื้องต้น', 'url' => ['/visit']],
                     ['label' => 'ตรวจรักษา', 'url' => ['/service']],
-                    ['label' => 'จ่ายยา', 'url' => ['/dispense']],
-                    ['label' => 'การนัดหมาย', 'url' => ['/appointment']],
+                    ['label' => 'จ่ายยา', 'items' => [
+                            ['label' => 'ผู้ตรวจรักษา', 'url' => ['/dispense']],
+                            ['label' => 'เจ้าหน้าที่', 'url' => ['/dispense/report']],
+                        ]],
+                    ['label' => 'การนัดหมาย', 'items' => [
+                            ['label' => 'ผู้ตรวจรักษา', 'url' => ['/appointment']],
+                            ['label' => 'เจ้าหน้าที่', 'url' => ['/appointment/report']],
+                        ]],
                     ['label' => 'ค่าใช้จ่าย', 'url' => ['/payment']],
-                   // ['label' => 'รายงาน', 'url' => ['/reports']],
+                    // ['label' => 'รายงาน', 'url' => ['/reports']],
                     Yii::$app->user->isGuest ? ['label' => 'รายงาน',] :
-                            ['label' => 'รายงาน(' . Yii::$app->user->identity->username . ')', 'items' => [
+                            ['label' => 'รายงาน', 'items' => [
                             ['label' => 'เจ้าหน้าที่', 'url' => ['/patient/report1']],
                             ['label' => 'ผู้ใช้บริการ', 'url' => ['/patient/report2']],
                             ['label' => 'ยอดการชำระเงินประจำวัน', 'url' => ['/patient/report3']],
-                                ['label' => 'ยอดเวชภัณฑ์', 'url' => ['/patient/report4']],
-                                ['label' => 'เวชภัณฑ์หมดอายุ', 'url' => ['/patient/report5']],
+                            ['label' => 'ยอดเวชภัณฑ์', 'url' => ['/patient/report4']],
+                            ['label' => 'เวชภัณฑ์หมดอายุ', 'url' => ['/patient/report5']],
+                            ['label' => 'รายงานผู้รับบริการประจำวัน', 'url' => ['/patient/reportptday']],
+                            ['label' => 'รายงานค่าบริการประจำวัน', 'url' => ['/patient/reportmday']],
                         ]],
                     Yii::$app->user->isGuest ? ['label' => 'Sign in', 'url' => ['/user/security/login']] :
-                            ['label' => 'Account(' . Yii::$app->user->identity->username . ')', 'items' => [
-                            ['label' => 'Profile', 'url' => ['/user/settings/profile']],
-                            ['label' => 'Account', 'url' => ['/user/settings/account']],
-                            ['label' => 'Logout', 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
+                            ['label' => '(' . Yii::$app->user->identity->username . ')', 'items' => [
+                            ['label' => 'ข้อมูลส่วนตัว', 'url' => ['/user/settings/profile']],
+                            ['label' => 'รหัสผ่าน', 'url' => ['/user/settings/account']],
+                            ['label' => 'ออกระบบ', 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
                         ]],
                 ],
             ]);
+            
+ }
             NavBar::end();
             ?>
 

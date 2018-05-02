@@ -35,7 +35,14 @@ $this->title = 'ค่าบริการ';
                     'ic_summary',
                     'service.visit.emp.emp_name',
                     'service_id',
-                    ['class' => 'yii\grid\ActionColumn'],
+                    ['class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete} {my_button}',
+                        'buttons' => [
+                            'my_button' => function ($url, $model, $key) {
+                                return Html::a('คิดค่าบริการ', ['payment/report', 'id' => $model->service_id]);
+                            },
+                                ],
+                            ],
                 ],
             ]);
             ?>

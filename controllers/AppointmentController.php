@@ -109,6 +109,32 @@ class AppointmentController extends Controller
         return $this->redirect(['index']);
     }
 
+    
+    public function actionReport() {
+        $mn = date('Y-m-d');
+        //$m = $mn['mon'];
+        $sql = "SELECT v.datetimesv,ap.apps_date,ap.apps_details,CONCAT(pt.ptName,' ',pt.ptLname) as fullname FROM appointment ap
+LEFT JOIN service sv ON sv.sv_id = ap.service_id
+LEFT JOIN visit v on v.id = sv.visit_id
+LEFT JOIN patient pt on pt.pt_id = v.pt_id 
+where ap.apps_date>$mn 
+ORDER BY v.datetimesv";
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData,
+            'pagination' => FALSE
+        ]);
+        return $this->render('report', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'rawData' => $rawData
+        ]);
+    }
+    
     /**
      * Finds the Appointment model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

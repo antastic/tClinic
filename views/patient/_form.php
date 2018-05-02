@@ -46,7 +46,7 @@ use kartik\widgets\DatePicker;
 
     <?=
     $form->field($model, 'pt_bd')->widget(DatePicker::classname(), [
-        'options' => ['placeholder' => 'วันหมดอายุ'],
+        'options' => ['placeholder' => 'วันเกิด'],
         'readonly' => TRUE,
         'language' => 'th',
         'pluginOptions' => [

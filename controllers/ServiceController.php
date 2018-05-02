@@ -8,6 +8,8 @@ use app\models\ServiceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+//use app\models\Visit;
+//use app\models\VisitSearch;
 
 /**
  * ServiceController implements the CRUD actions for Service model.
@@ -62,14 +64,14 @@ class ServiceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id)
+    public function actionCreateid($id)
     {
         $model = new Service();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->visit_id=$id;
+            $model->visit_id = $id;
             if( $model->save()){
-              return $this->redirect(['dispense/create', 'id' => $model->sv_id]);  
+              return $this->redirect(['dispense/createid', 'id' => $model->sv_id]);  
             }
         }
 
@@ -77,7 +79,21 @@ class ServiceController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionCreate()
+    {
+        $model = new Service();
 
+        if ($model->load(Yii::$app->request->post())) {
+            //$model->visit_id=$id;
+            if( $model->save()){
+              return $this->redirect(['dispense/createid', 'id' => $model->sv_id]);  
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Updates an existing Service model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -90,7 +106,7 @@ class ServiceController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->sv_id]);
+            return $this->redirect(['dispense/createid', 'id' => $model->sv_id]);
         }
 
         return $this->render('update', [

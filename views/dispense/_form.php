@@ -3,8 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Drug;
-
+use kartik\widgets\Select2;
+use app\models\Expenses;
 use yii\helpers\ArrayHelper;
+use app\models\Employee;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Dispense */
@@ -23,11 +25,21 @@ use yii\helpers\ArrayHelper;
     
     <?= $form->field($model, 'drug_prices')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'emp_id')->textInput() ?>
+    <?= $form->field($model, 'emp_id')->widget(Select2::classname(),[
+        'data'=>  ArrayHelper::map(Employee::find()->all(), 'emp_id', 'emp_name'),
+        'language'=>'th',
+        'options'=>['placeholder'=>'เจ้าหน้าที่'],
+        'pluginOptions'=>['allowClear'=>TRUE],
+    ]); ?>
 
-    <?= $form->field($model, 'service_id')->textInput() ?>
+    <?php //echo $form->field($model, 'service_id')->textInput() ?>
 
-    <?= $form->field($model, 'Expenses_id')->textInput() ?>
+    <?= $form->field($model, 'Expenses_id')->widget(Select2::classname(),[
+        'data'=>  ArrayHelper::map(Expenses::find()->all(), 'ex_id', 'Expenses'),
+        'language'=>'th',
+        'options'=>['placeholder'=>'ประเภทค่าใช้จ่าย'],
+        'pluginOptions'=>['allowClear'=>TRUE],
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>

@@ -230,6 +230,54 @@ class PatientController extends Controller {
         ]);
     }
 
+    
+    public function actionReportptday() {
+       
+        $dt = date('Y-m-d');
+        $sql = "SELECT CONCAT(pt.ptLname,' ',pt.ptLname) as fullname  FROM visit v
+LEFT JOIN patient pt ON pt.pt_id =v.pt_id
+WHERE v.datetimesv >=$dt";
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData,
+            'pagination' => FALSE
+        ]);
+        return $this->render('reportptday', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'rawData' => $rawData
+        ]);
+    }
+
+     public function actionReportmday() {
+       
+        $dt = date('Y-m-d');
+        $sql = "SELECT DATE(v.datetimesv) AS dt, CONCAT(pt.ptName,' ',pt.ptLname) as fullname, ic_summary, s.svdx from payment p
+LEFT JOIN service s ON s.sv_id = p.service_id
+LEFT JOIN visit v ON s.visit_id=v.id
+LEFT JOIN patient pt ON pt.pt_id = v.pt_id
+WHERE v.datetimesv > $dt";
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData,
+            'pagination' => FALSE
+        ]);
+        return $this->render('reportmday', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'rawData' => $rawData
+        ]);
+    }
+
+    
     /**
      * Finds the Patient model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

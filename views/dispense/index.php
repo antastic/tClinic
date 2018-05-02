@@ -28,7 +28,8 @@ $this->title = 'การจ่ายยา';
                 // 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'vsd_id',
+                    //'vsd_id',
+                    'service_id',
                     'drug.drugname',
                     'drug_amount',
                     'vtd_unit',

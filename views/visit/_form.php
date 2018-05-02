@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Patient;
+use app\models\Employee;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Visit */
@@ -14,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?php //echo $form->field($model, 'datetimesv')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pt_id')->textInput() ?>
+    <?php //echo $form->field($model, 'pt_id')->textInput()     ?>
     
     <div class="row">
         <div class=" col-xs-4 col-sm-4 col-md-4">
@@ -40,7 +44,12 @@ use yii\widgets\ActiveForm;
     </div>
 
   
-    <?= $form->field($model, 'emp_id')->textInput() ?>
+    <?= $form->field($model, 'emp_id')->widget(Select2::classname(),[
+        'data'=>  ArrayHelper::map(Employee::find()->all(), 'emp_id', 'emp_name'),
+        'language'=>'th',
+        'options'=>['placeholder'=>'เจ้าหน้าที่'],
+        'pluginOptions'=>['allowClear'=>TRUE],
+    ]); ?>
 
 
     <div class="form-group">

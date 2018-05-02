@@ -67,7 +67,7 @@ class PaymentController extends Controller
         $model = new Payment();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ic_id]);
+            return $this->render('index');
         }
 
         return $this->render('create', [
@@ -109,6 +109,29 @@ class PaymentController extends Controller
         return $this->redirect(['index']);
     }
 
+    
+        public function actionReport($id) {
+        //$mn = getdate();
+        //$m = $mn['mon'];
+       $sql = "SELECT du.drugname, d.drug_amount,d.drug_prices FROM dispense d "
+               . "LEFT JOIN drug du ON du.drug_id = d.drug_id "
+               . "WHERE service_id =$id";
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData,
+            'pagination' => FALSE
+        ]);
+        return $this->render('report', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'rawData' => $rawData
+        ]);
+    }
+    
     /**
      * Finds the Payment model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

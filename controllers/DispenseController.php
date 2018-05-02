@@ -66,8 +66,29 @@ class DispenseController extends Controller
     {
         $model = new Dispense();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->vsd_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->service_id=$id;
+            if($model->save()){
+              return $this->redirect(['view', 'id' => $model->vsd_id]);  
+            }
+            
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+    
+    public function actionCreateid($id)
+    {
+        $model = new Dispense();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->service_id=$id;
+            if($model->save()){
+              return $this->redirect(['view', 'id' => $model->vsd_id]);  
+            }
+            
         }
 
         return $this->render('create', [
@@ -109,6 +130,54 @@ class DispenseController extends Controller
         return $this->redirect(['index']);
     }
 
+    
+    public function actionReport() {
+        //$mn = getdate();
+        //$m = $mn['mon'];
+        $sql = "SELECT dp.drug_amount,dp.drug_prices,d.drugname,ex.Expenses, CONCAT(pt.ptName,' ',pt.ptLname) as fullname FROM dispense dp
+LEFT JOIN drug d on d.drug_id = dp.drug_id
+LEFT JOIN expenses ex on ex.ex_id= dp.Expenses_id
+LEFT JOIN service sv ON sv.sv_id = dp.service_id
+LEFT JOIN visit v on v.id = sv.visit_id
+LEFT JOIN patient pt on pt.pt_id = v.pt_id
+ORDER BY dp.service_id";
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData,
+            'pagination' => FALSE
+        ]);
+        return $this->render('report', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'rawData' => $rawData
+        ]);
+    }
+    
+    public function actionExpense($id) {
+        //$mn = getdate();
+        //$m = $mn['mon'];
+       $sql = "SELECT du.drugname, d.drug_amount,d.drug_prices FROM dispense d LEFT JOIN drug du ON du.drug_id = d.drug_id WHERE service_id =$id";
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData,
+            'pagination' => FALSE
+        ]);
+        return $this->render('recipt', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'rawData' => $rawData
+        ]);
+        //return $this->redirect('index.php?r=expenses');
+    }
+    
     /**
      * Finds the Dispense model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

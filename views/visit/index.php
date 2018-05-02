@@ -41,10 +41,10 @@ $this->title = 'ตรวจรักษาเบื้องต้น';
                     //'emp_id',
                     //'pt_id',
                     ['class' => 'yii\grid\ActionColumn',
-                        'template' => '{my_button} {view} {update} {delete} ',
+                        'template' => '{my_button} {view} {update}  ',
                         'buttons' => [
                             'my_button' => function ($url, $model, $key) {
-                                return Html::a('ตรวจรักษา', ['service/create', 'id' => $model->id]);
+                                return Html::a('ตรวจรักษา', ['service/createid', 'id' => $model->id]);
                             },
                                 ],],
                 ],

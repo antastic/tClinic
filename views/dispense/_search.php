@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'vsd_id') ?>
+    <?= $form->field($model, 'service_id') ?>
 
   <?php ActiveForm::end(); ?>
 
