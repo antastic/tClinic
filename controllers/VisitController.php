@@ -34,9 +34,16 @@ class VisitController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
+        $model = new Visit();
+        $dt = date('Y-m-d');
+
         $searchModel = new VisitSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+      //$query = $model->find()->where(['datetimesv' <' $dt']);
+       // $dataProvider = new \yii\data\ActiveDataProvider([
+        //    'query' => $query,
+       //         ]
+     //   );
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
@@ -73,7 +80,6 @@ class VisitController extends Controller {
 
         return $this->render('create', [
                     'model' => $model,
-                    
         ]);
     }
 
@@ -86,12 +92,12 @@ class VisitController extends Controller {
                 return $this->redirect('index.php?r=visit');
             }
         }
-        
+
         return $this->render('create', [
                     'model' => $model,
-                    
         ]);
     }
+
     /**
      * Updates an existing Visit model.
      * If update is successful, the browser will be redirected to the 'view' page.

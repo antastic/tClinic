@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
+use app\models\LoginForm;
 
 /**
  * EmployeeController implements the CRUD actions for Employee model.
@@ -41,6 +42,21 @@ class EmployeeController extends Controller {
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionLogin() {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        /*
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }*/
+        return $this->render('login', [
+                    'model' => $model,
         ]);
     }
 

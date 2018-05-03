@@ -34,12 +34,12 @@ $this->title = 'รายการยา เวชภัณฑ์';
                     ['class' => 'yii\grid\SerialColumn'],
                     //'drug_id',
                     'drugname',
-                    'drugitems.in_amount',
-                    'drugitems.ip_exp',
-                    //'used',
+                    //'drugitems.in_amount',
+                    //'drugitems.ip_exp',
+                    'used',
                  
                     ['class' => 'yii\grid\ActionColumn',
-                        'template' => '{my_button} {view} {update} {delete} ',
+                        'template' => '{my_button} {view} {update}  ',
                         'buttons' => [
                             'my_button' => function ($url, $model, $key) {
                                 return Html::a('รับยา', ['drugitem/create', 'id' => $model->drug_id]);

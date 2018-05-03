@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DatePicker;
+use yii\helpers\ArrayHelper;
+use kartik\widgets\Select2;
+use app\models\Employee;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Appointment */
@@ -27,9 +30,14 @@ use kartik\widgets\DatePicker;
 
     <?= $form->field($model, 'apps_details')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'emp_id')->textInput() ?>
+    <?= $form->field($model, 'emp_id')->widget(Select2::classname(),[
+        'data'=>  ArrayHelper::map(Employee::find()->all(), 'emp_id', 'emp_name'),
+        'language'=>'th',
+        'options'=>['placeholder'=>'เจ้าหน้าที่'],
+        'pluginOptions'=>['allowClear'=>TRUE],
+    ]); ?>
 
-    <?= $form->field($model, 'service_id')->textInput() ?>
+    <?php //echo $form->field($model, 'service_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>

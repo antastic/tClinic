@@ -185,10 +185,10 @@ class PatientController extends Controller {
 
     public function actionReport4() {
         //$mn = getdate();
-        //$m = $mn['mon'];
+        $dt = date('Y-m-d');
         $sql = "SELECT d.drugname ,sum(di.in_amount)- sum(dp.drug_amount) as sumdrug FROM drugitem di "
                 . "LEFT JOIN drug d ON d.drug_id=di.drug_id "
-                . "LEFT JOIN dispense dp ON dp.drug_id = d.drug_id WHERE di.ip_status='ใช้ได้' "
+                . "LEFT JOIN dispense dp ON dp.drug_id = d.drug_id WHERE di.ip_status='ใช้ได้' and di.ip_exp>'$dt' "
                 . "GROUP BY di.drug_id "
                 . "ORDER BY sumdrug";
         try {

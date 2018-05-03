@@ -33,7 +33,16 @@ $this->title = 'ตรวจรักษา';
                     'svdx',
                     'sv_details',
                     'visit.emp.emp_name',
-                    ['class' => 'yii\grid\ActionColumn'],
+                    ['class' => 'yii\grid\ActionColumn',
+                        'template' => '{drug_button} {app_button} {view} {update}  ',
+                        'buttons' => [
+                            'drug_button' => function ($url, $model, $key) {
+                                return Html::a('จ่ายยา', ['dispense/createid', 'id' => $model->sv_id]);
+                            },
+                            'app_button' => function ($url, $model, $key) {
+                                return Html::a('นัด', ['appointment/createid', 'id' => $model->sv_id]);
+                            },        
+                                ],],
                 ],
             ]);
             ?>

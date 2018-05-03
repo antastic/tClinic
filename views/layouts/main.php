@@ -48,24 +48,24 @@ AppAsset::register($this);
                     ['label' => 'ตรวจเบื้องต้น', 'url' => ['/visit']],
                     ['label' => 'ตรวจรักษา', 'url' => ['/service']],
                     ['label' => 'จ่ายยา', 'items' => [
-                            ['label' => 'ผู้ตรวจรักษา', 'url' => ['/dispense']],
+                            //['label' => 'ผู้ตรวจรักษา', 'url' => ['/dispense']],
                             ['label' => 'เจ้าหน้าที่', 'url' => ['/dispense/report']],
                         ]],
                     ['label' => 'การนัดหมาย', 'items' => [
-                            ['label' => 'ผู้ตรวจรักษา', 'url' => ['/appointment']],
+                           // ['label' => 'ผู้ตรวจรักษา', 'url' => ['/appointment']],
                             ['label' => 'เจ้าหน้าที่', 'url' => ['/appointment/report']],
                         ]],
-                    ['label' => 'ค่าใช้จ่าย', 'url' => ['/payment']],
+                    //['label' => 'ค่าใช้จ่าย', 'url' => ['/payment']],
                     // ['label' => 'รายงาน', 'url' => ['/reports']],
                     Yii::$app->user->isGuest ? ['label' => 'รายงาน',] :
                             ['label' => 'รายงาน', 'items' => [
                             ['label' => 'เจ้าหน้าที่', 'url' => ['/patient/report1']],
                             ['label' => 'ผู้ใช้บริการ', 'url' => ['/patient/report2']],
-                            ['label' => 'ยอดการชำระเงินประจำวัน', 'url' => ['/patient/report3']],
+                            //['label' => 'ยอดการชำระเงินประจำวัน', 'url' => ['/patient/report3']],
                             ['label' => 'ยอดเวชภัณฑ์', 'url' => ['/patient/report4']],
                             ['label' => 'เวชภัณฑ์หมดอายุ', 'url' => ['/patient/report5']],
                             ['label' => 'รายงานผู้รับบริการประจำวัน', 'url' => ['/patient/reportptday']],
-                            ['label' => 'รายงานค่าบริการประจำวัน', 'url' => ['/patient/reportmday']],
+                            //['label' => 'รายงานค่าบริการประจำวัน', 'url' => ['/patient/reportmday']],
                         ]],
                     Yii::$app->user->isGuest ? ['label' => 'Sign in', 'url' => ['/user/security/login']] :
                             ['label' => '(' . Yii::$app->user->identity->username . ')', 'items' => [

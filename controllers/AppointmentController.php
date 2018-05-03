@@ -75,6 +75,22 @@ class AppointmentController extends Controller
         ]);
     }
 
+    public function actionCreateid($id)
+    {
+        $model = new Appointment();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->service_id=$id;
+            if( $model->save()){
+            return $this->redirect(['view', 'id' => $model->apps_id]);
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+    
     /**
      * Updates an existing Appointment model.
      * If update is successful, the browser will be redirected to the 'view' page.
